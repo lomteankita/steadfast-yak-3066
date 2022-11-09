@@ -5,8 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #head{
+            width: 100%;
+            height: 735px;
+            display: flex;
+            text-align: center;  
+          
+        }
+        #head>div{
+            width: 50%;
+        
+        }
+        #head1{
+            background-color: #3a609b;
+        }
+        #head2{ 
+            align-items: center;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            text-align: center;
+            gap: 10px;
+        }
+        #head2>input{
+            text-align: center;
+            margin: auto;
+            height: 45px;
+            width: 35%;
+            border-radius: 8px;
+        }
+        #head2>button{
+            margin: auto;
+            height: 45px;
+            width: 35%;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            border: none;
+        }
+        #head2>button:hover{
+            cursor: pointer;
+         }
+        
+        img{
+            width: 100%;
+        }
+        #img{
+            width: 20%;
+            margin: auto;
+            background-color: white;
+        }
+        #login{
+            background-color: black;
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
+    <div id="head">
+       
+        <div id="head1">
+            <h1>Welcome to the world of EASYWAY SHOPPING</h1>
+            <img src="https://images.bewakoof.com/web/group-19-1617704502.png" alt="">
+        </div>
+        <div id="head2">
+            <div id="img">
+                <img src="Way.png" alt=""> 
+
+            </div>
+           <button>Sign in with Google</button> 
+           <button>Sign in with Microsoft</button>
+           <button>Sign in with Apple</button>
+           <p>Sign in with your email</p>
+           <input type="text" placeholder="Email" >
+           <input type="text" placeholder="Password">
+           <p>Forgot your password? Retrieve</p>
+           <button id="login">LOGIN</button>
+           <P>Don,t have an account? SIGN UP</P>
+        </div>
+    </div>
     
 </body>
 </html>
