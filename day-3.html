@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #navbar{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+       margin: auto;
+       position: sticky;
+       top: 00px;
+       background-color: white;
+    }
+    #img1 {
+                width: 10%;
+            }
+       
+    #img2{
+        width: 50%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    #bu1{
+        height: 31px;
+        cursor: pointer;
+        background-color: white;
+        border-color: red;
+        border-radius: 8px;
+        color: red;
+    }
+    #bu2{
+        background-color: red;
+        border-radius: 8px;
+        height: 31px;
+        border-color: red;
+        color: white;
+    }
+    #bu2:hover{
+        background-color: white;
+        cursor: pointer;
+        color: red;
+    }
+    #bu1{
+        height: 31px;
+        cursor: pointer;
+        background-color: white;
+        border-color: red;
+        border-radius: 8px;
+        color: red;
+    }
+    #bu1:hover{
+        background-color: red;
+        cursor: pointer;
+        color: white;
+    }
+    #product-container{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-auto-rows: auto;
+        gap: 20px;
+
+      }
+      #product-container>div{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding: 10px;
+       
+      }
+      #product-container>div>button{
+        background-color: red;
+        margin: auto;
+        align-items: center;
+        border-radius: 8px;
+      }
+    img{
+        width: 100%;
+    }
+</style>
+<body>
+    <div id="navbar">
+        <div id="img1">
+          <img src="Way.png" alt="">    
+        </div>
+        <div id="img2">
+          <p>MEN</p>
+          <p>WOMEN</p>
+          <p>MOBLIE COVER</p>
+          <button id="bu1">MY CART</button>
+          <button id="bu2"><a href="day-2.html">LOGIN</a></button>
+        </div>
+      </div>
+      <div>
+        <img src="https://images.bewakoof.com/uploads/category/desktop/InsideBanner_desktop_HoDeals_01-1666092225.jpg" alt="">
+      </div>
+      <div id="product-container">
+        <!-- Here Append All the Products  -->
+      </div>
+</body>
+</html>
+<script>
+    let data=[];
+   // let   carditems=JSON.parse(localStorage.getItem("cart"))||[];
+    async function getdata(){
+        try{
+      let res=await fetch("https://636cf384ab4814f2b27390bb.mockapi.io/products")
+            let data1=await res.json();
+            data=data1
+           // console.log(data1);
+            console.log(data1);
+           displaytable(data)
+        } catch (err){
+            console.log(err)
+        }
+    }
+    function displaytable(arr){
+        document.querySelector("#product-container").innerHTML="";
+        arr.forEach((element)=> {
+            let div=document.createElement("div");
+            
+            let img=document.createElement("img");
+            img.src=element.avatar
+        
+            let brand=document.createElement("h2");
+            brand.innerText=element.name
+            let cost=document.createElement("h3");
+            cost.innerText= "price   :  " +element.price
+            let details=document.createElement("p");
+            details.innerText=element.details
+            
+            let cat=document.createElement("p");
+            cat.innerText=element.category
+            let title=document.createElement("p");
+            title.innerText=element.title
+            let button=document.createElement("button");
+            button.innerText="add to card"
+            button.addEventListener("click",function(){
+                carditems.push(element)
+                localStorage.setItem("cart",JSON.stringify(carditems))
+                console.log(carditems)
+                
+            }) 
+                       
+            div.append(img,brand,cost,details,cat,title,button);
+            document.getElementById("product-container").append(div)
+
+        });
+    }
+    getdata();
+
+</script>
+

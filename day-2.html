@@ -81,10 +81,27 @@
            <input type="text" placeholder="Email" >
            <input type="text" placeholder="Password">
            <p>Forgot your password? Retrieve</p>
-           <button id="login">LOGIN</button>
+           <button id="login"><a href="day-3.html">LOGIN</a></button>
            <P>Don,t have an account? SIGN UP</P>
         </div>
     </div>
     
 </body>
 </html>
+<script>
+    let data=[];
+    let   carditems=JSON.parse(localStorage.getItem("cart"))||[];
+    async function getdata(){
+        try{
+      let res=await fetch("https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-tech-products")
+            let data1=await res.json();
+            data=data1.data
+           // console.log(data1);
+            console.log(data1.data);
+            displaytable(data)
+        } catch (err){
+            alert(err)
+        }
+    }
+
+</script>
