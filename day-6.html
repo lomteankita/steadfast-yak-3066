@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #top{
+        width: 80%;
+        height: 100px;
+        display: flex;
+    }
+    #top>h1{
+        margin: auto;
+    }
+      #container{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: auto;
+        gap: 10px;
+    }
+    #container>div>img{
+        width: 100%;
+    }
+
+</style>
+<body>
+    <div id="top">
+        <h1 id="h1">Totalcost</h1>
+        <a href="day-3.html">
+            <h1> HOME PAGE</h1>
+        </a>
+        
+
+    </div>
+   
+    <div id="container">
+
+    </div>
+    
+</body>
+</html>
+<script>
+    let carditems=JSON.parse(localStorage.getItem("cart"));
+    console.log(carditems)
+   
+    let totalcost=carditems.reduce((acc,el)=>acc+el.price,0);
+   console.log(totalcost)
+    let h1=document.getElementById("h1")
+   h1.innerText="Totalcost "+" : "+ totalcost
+    function displaytable(arr){
+        document.querySelector("#container").innerHTML="";
+        arr.forEach(element => {
+            let div=document.createElement("div");
+            
+            let img=document.createElement("img");
+            img.src=element.avatar
+        
+            let brand=document.createElement("h2");
+            brand.innerText=element.name
+            let cost=document.createElement("h3");
+            cost.innerText= "price   :  " +element.price
+            let details=document.createElement("p");
+            details.innerText=element.details
+            
+            let cat=document.createElement("p");
+            cat.innerText=element.category
+            let title=document.createElement("p");
+            title.innerText=element.title
+            let button=document.createElement("button");
+            button.innerText="remove"
+            button.addEventListener("click",function(){
+                carditems.pop(element)
+                localStorage.setItem("cart",JSON.stringify(carditems))
+                displaytable(carditems)
+                let totalcost=carditems.reduce((acc,el)=>acc+el.price,0);
+              console.log(totalcost)
+              let h1=document.getElementById("h1")
+              h1.innerText="Totalcost "+" : "+ totalcost
+                
+            }) 
+                       
+            div.append(img,brand,cost,details,cat,title,button);
+            document.getElementById("container").append(div)
+
+        });
+    }
+    displaytable(carditems)
+</script>
