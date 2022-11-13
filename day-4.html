@@ -59,6 +59,16 @@
         cursor: pointer;
         color: white;
     }
+    #mid1{
+        display: flex;
+        margin: auto;
+       width: 90%;
+    }
+    #mid{
+        width: auto;
+        height: 400px;
+        margin: auto;
+    }
     #product-container{
         display: grid;
         grid-template-columns: repeat(4,1fr);
@@ -89,7 +99,7 @@
               </a>      
         </div>
         <div id="img2">
-            <a href="day-4.html"> MEN</a>
+          <p>MEN</p>
           <a href="day-5.html">WOMEN</a>
           <input type="text" name="" id="se" placeholder="SREACH HERE">
           <a href="day-6.html">
@@ -98,11 +108,12 @@
           <button id="bu2"><a href="day-2.html">LOGIN</a></button>
         </div>
       </div>
-      <div>
-        <img src="https://images.bewakoof.com/uploads/category/desktop/InsideBanner_desktop_HoDeals_01-1666092225.jpg" alt="">
-      </div>
+      <div id="mid1" >
+        <img id="mid" src="https://images.bewakoof.com/uploads/grid/app/streetwear-men-new-1668157457.jpg" alt="">
+         <img id="mid" src="https://images.bewakoof.com/uploads/grid/app/OVERSIZED-TEES-1X1-refreshed-m-1668144512.gif" alt="">  
+         <img id="mid" src="https://images.bewakoof.com/uploads/grid/app/WinterWear-Nov-StaticBanner-men-Printed-1667897007.jpg" alt="">
+        </div>
       <div id="product-container">
-        <!-- Here Append All the Products  -->
       </div>
 </body>
 </html>
@@ -131,7 +142,25 @@
         
             let brand=document.createElement("h2");
             brand.innerText=element.name
-            div.append(img,brand);
+            let cost=document.createElement("h3");
+            cost.innerText= "price   :  " +element.price
+            let details=document.createElement("p");
+            details.innerText=element.details
+            
+            let cat=document.createElement("p");
+            cat.innerText=element.category
+            let title=document.createElement("p");
+            title.innerText=element.title
+            let button=document.createElement("button");
+            button.innerText="add to card"
+            button.addEventListener("click",function(){
+                carditems.push(element)
+                localStorage.setItem("cart",JSON.stringify(carditems))
+                console.log(carditems)
+                
+            }) 
+                       
+            div.append(img,brand,cost,details,cat,title,button);
             document.getElementById("product-container").append(div)
 
         });
